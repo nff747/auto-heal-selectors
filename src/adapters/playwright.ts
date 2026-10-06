@@ -50,7 +50,10 @@ export class PlaywrightAdapter {
                 };
                 if (this.options.onHeal) this.options.onHeal(event);
 
-                const healedLocator = page.locator(healed.selector);
+                let healedLocator = page.locator(healed.selector);
+                if (typeof healedLocator.first === 'function' && typeof healedLocator[prop] !== 'function') {
+                  healedLocator = healedLocator.first();
+                }
                 return await healedLocator[prop](...args);
               }
               throw err;
