@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { calculatePathSimilarity } from '../src/similarity/structural';
-import { calculateAttributeSimilarity } from '../src/similarity/attribute';
+import { calculateAttributeSimilarity, fuzzyAttributeMatch } from '../src/similarity/attribute';
 import { calculateTextSimilarity } from '../src/similarity/text';
 import { calculateCompositeSimilarity } from '../src/similarity/composite';
 
@@ -22,6 +22,13 @@ describe('similarity metric engine', () => {
 
     const scorePartial = calculateAttributeSimilarity(attrsA, { type: 'submit' }, ['btn'], ['btn', 'btn-danger']);
     expect(scorePartial).toBeLessThan(0.7);
+  });
+
+  it('verifies fuzzy attribute matching tolerance threshold', () => {
+    const expected = { 'data-testid': 'submit-btn-primary', role: 'button' };
+    const actual = { 'data-testid': 'submit-btn-prim', role: 'button' };
+    expect(fuzzyAttributeMatch(expected, actual, 0.75)).toBe(true);
+    expect(fuzzyAttributeMatch(expected, { role: 'link' }, 0.75)).toBe(false);
   });
 
   it('computes fuzzy and substring text similarity', () => {
