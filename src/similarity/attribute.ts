@@ -39,3 +39,19 @@ export function calculateAttributeSimilarity(
   const avgAttrScore = attrScores.reduce((a, b) => a + b, 0) / attrScores.length;
   return 0.4 * classScore + 0.6 * avgAttrScore;
 }
+
+export function fuzzyAttributeMatch(
+  expected: Record<string, string>,
+  candidate: Record<string, string>,
+  threshold: number = 0.75
+): boolean {
+  const keys = Object.keys(expected);
+  if (keys.length === 0) return true;
+  let matches = 0;
+  for (const k of keys) {
+    if (candidate[k] !== undefined && normalizedSimilarity(expected[k], candidate[k]) >= threshold) {
+      matches++;
+    }
+  }
+  return (matches / keys.length) >= threshold;
+}
