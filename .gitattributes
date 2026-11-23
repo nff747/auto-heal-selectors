@@ -1,0 +1,8 @@
+# Standardize line endings and binary handling for auto-heal-selectors
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jks binary
+*.wasm binary
+*.glb binary
+*.gltf text
