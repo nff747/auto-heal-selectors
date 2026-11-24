@@ -1,5 +1,7 @@
 # 🤖 auto-heal-selectors
 
+[![Lunar Paradox](https://img.shields.io/badge/Organization-Lunar_Paradox-0a0e1a?style=for-the-badge&logo=probot&logoColor=d7b886)](https://lunarparadox.com)
+
 > **Zero-dependency, semantic DOM auto-healer for Playwright and Puppeteer.**
 > Heals broken E2E locators in real-time, executes actions transparently, and writes unified diffs back to source code.
 
@@ -107,3 +109,7 @@ All 15 test suites and 40+ unit/integration tests pass with sub-millisecond exec
 
 ## 📄 License
 Licensed under the [Apache License, Version 2.0](LICENSE).
+
+---
+
+*A component of the [Lunar Paradox](https://lunarparadox.com) applied systems & graphics laboratory. Engineered by nff747.*
